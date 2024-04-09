@@ -46,9 +46,10 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("users1", users);
         String uname = request.getParameter("userName");
         request.setAttribute("varchange", uname);*/
+        
         if (uri.equals("/")) {
-
             request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
+            System.out.println(request.getParameter("state"));
         }
         else if(uri.equals("/addcomment")){
             request.getRequestDispatcher("/WEB-INF/view/addcomment.jsp").forward(request, response);
@@ -56,6 +57,19 @@ public class HomeServlet extends HttpServlet {
         else if(uri.equals("/rankings")){
             request.getRequestDispatcher("/WEB-INF/view/rankings.jsp").forward(request, response);
         }
+        else if(uri.equals("/register")){
+            request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+        }
+        else if(uri.equals("/login")){
+            request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
+        }
+        else if(uri.equals("/error404"))
+        {
+            request.getRequestDispatcher("/WEB-INF/view/error404.jsp").forward(request, response);
+        }
+        else{
+           response.sendRedirect("/error404");
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
