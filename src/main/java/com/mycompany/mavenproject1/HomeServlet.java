@@ -89,9 +89,7 @@ public class HomeServlet extends HttpServlet {
             }
         } else if (uri.equals("/error404")) {
             request.getRequestDispatcher("/WEB-INF/view/error404.jsp").forward(request, response);
-        } else {
-            response.sendRedirect("/error404");
-        }
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

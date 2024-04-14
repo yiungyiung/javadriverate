@@ -1,0 +1,8 @@
+com\mycompany\mavenproject1\UserService\UsersService.class
+com\mycompany\mavenproject1\config\DBconnection.class
+com\mycompany\mavenproject1\model\UserModel.class
+com\mycompany\mavenproject1\UserService\UserServiceImpl.class
+com\mycompany\mavenproject1\JakartaRestConfiguration.class
+com\mycompany\mavenproject1\HomeServlet.class
+com\mycompany\mavenproject1\resources\JakartaEE10Resource.class
+com\mycompany\mavenproject1\UserDAO\UsersDAO.class
