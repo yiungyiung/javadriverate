@@ -24,7 +24,7 @@ public class DBconnection {
             Logger.getLogger(DBconnection.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-           return DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms","root","544040");
+           return DriverManager.getConnection("jdbc:mysql://localhost:3306/driverate","root","544040");
         } catch (SQLException ex) {
             Logger.getLogger(DBconnection.class.getName()).log(Level.SEVERE, null, ex);
         }

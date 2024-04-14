@@ -4,7 +4,7 @@
  */
 package com.mycompany.mavenproject1;
 
-import com.mycompany.mavenproject1.UserDAO.UsersDAO;
+import com.mycompany.mavenproject1.UserService.UserServiceImpl;
 import com.mycompany.mavenproject1.model.UserModel;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.lang.annotation.ElementType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,43 +34,64 @@ public class HomeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String uri = request.getRequestURI();
-        /*System.out.println(uri + "Yash");
-        ArrayList<UserModel> users = new ArrayList<>();
-        users.add(new UserModel("y", 12, "y@y"));
-        users.add(new UserModel("a", 12, "a@a"));
-        users.add(new UserModel("s", 12, "s@s"));
-        users.add(new UserModel("t", 12, "5@t","yashrocks"));
-        for (int i = 0; i < 4; i++) {
-            System.out.println((users.get(i)).name);
-        }
-        //UsersDAO.getInstance().save(users.get(3));
-        request.setAttribute("users1", users);
-        String uname = request.getParameter("userName");
-        request.setAttribute("varchange", uname);*/
-        
+
         if (uri.equals("/")) {
             request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
             System.out.println(request.getParameter("state"));
-        }
-        else if(uri.equals("/addcomment")){
+        } else if (uri.equals("/addcomment")) {
             request.getRequestDispatcher("/WEB-INF/view/addcomment.jsp").forward(request, response);
-        }
-        else if(uri.equals("/rankings")){
+        } else if (uri.equals("/rankings")) {
             request.getRequestDispatcher("/WEB-INF/view/rankings.jsp").forward(request, response);
-        }
-        else if(uri.equals("/register")){
-            request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
-        }
-        else if(uri.equals("/login")){
-            request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
-        }
-        else if(uri.equals("/error404"))
-        {
-            request.getRequestDispatcher("/WEB-INF/view/error404.jsp").forward(request, response);
-        }
-        else{
-           response.sendRedirect("/error404");
+        } else if (uri.equals("/register")) {
+            String method = request.getMethod();
+            if (method.equals("GET")) {
+                request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+            } else if (method.equals("POST")) {
+                // Retrieve parameters from the form
+                String username = request.getParameter("username");
+                String name = request.getParameter("name");
+                String email = request.getParameter("email");
+                String address = request.getParameter("address") + " " + request.getParameter("city") + " " + request.getParameter("country");
+                String password = request.getParameter("password");
+                String phone = request.getParameter("phone");
+                int l = UserServiceImpl.getInstance().register(name, password, address, email, phone, username);
+                if (l == 1) {
+                    // Registration successful, redirect to the main page
+                    response.sendRedirect("/login");
+                } else {
+                    // Registration failed, display an alert message
+                    PrintWriter out = response.getWriter();
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Registration failed. Please try again.');");
+                    out.println("window.location.href='/register';");
+                    out.println("</script>");
+                }
             }
+        } else if (uri.equals("/login")) {
+            String method = request.getMethod();
+            if (method.equals("GET")) {
+                request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
+            } else if (method.equals("POST")) {
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                String l = UserServiceImpl.getInstance().login(email, password);
+                if(l==null)
+                {
+                     PrintWriter out = response.getWriter();
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Login failed. Please try again.');");
+                    out.println("window.location.href='/login';");
+                    out.println("</script>");
+                }
+                else{
+                    response.sendRedirect("/main");
+                }
+            }
+        } else if (uri.equals("/error404")) {
+            request.getRequestDispatcher("/WEB-INF/view/error404.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("/error404");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
