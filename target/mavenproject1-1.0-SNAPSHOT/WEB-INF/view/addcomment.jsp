@@ -3,7 +3,6 @@
     Created on : Apr 9, 2024, 6:01:10 PM
     Author     : yash
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,13 +10,27 @@
         <title>DriveRate</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script>
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                }
+            }
+
+            function showPosition(position) {
+                document.getElementById("latitude").value = position.coords.latitude;
+                document.getElementById("longitude").value = position.coords.longitude;
+            }
+        </script>
     </head>
     <body class="bg-secondary text-white">
         <%@include file="navbar.jsp" %>
         <div class="container mt-4">
-            <form>
+            <form enctype="multipart/form-data" onsubmit="getLocation()">
                 <div class="mb-3">
-                    <label for="number" class="form-label">Number</label>
+                    <label for="number" class="form-label">Vehicle Number</label>
                     <input type="text" class="form-control" name="number" placeholder="Enter Vehicle Number" required>
                 </div>
                 <div class="mb-3">
@@ -58,11 +71,33 @@
                 </div>
                 <div class="mb-3">
                     <label for="comment" class="form-label">Comment</label>
-                    <textarea class="form-control" id="comment" rows="3" placeholder="Enter Comment" required></textarea>
+                    <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Enter Comment" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Add Comment</button>
+                <div class="mb-3">
+                    <label class="form-label">Rating</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" id="goodRating" value="good" required>
+                        <label class="form-check-label" for="goodRating">Good</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" id="badRating" value=null required>
+                        <label class="form-check-label" for="badRating">Bad</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="picture" class="form-label">Picture</label>
+                    <input type="file" class="form-control" name="picture" id="picture" accept="image/*" required>
+                </div>
+                <div class="mb-3">
+                    <label for="latitude" class="form-label">Latitude</label>
+                    <input type="number" class="form-control" name="latitude" id="latitude" placeholder="Enter Latitude" step="any" required>
+                </div>
+                <div class="mb-3">
+                    <label for="longitude" class="form-label">Longitude</label>
+                    <input type="number" class="form-control" name="longitude" id="longitude" placeholder="Enter Longitude" step="any" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Rating</button>
             </form>
         </div>
-
     </body>
 </html>

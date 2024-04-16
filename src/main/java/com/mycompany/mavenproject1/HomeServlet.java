@@ -39,7 +39,11 @@ public class HomeServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
             System.out.println(request.getParameter("state"));
         } else if (uri.equals("/addcomment")) {
-            request.getRequestDispatcher("/WEB-INF/view/addcomment.jsp").forward(request, response);
+            String method = request.getMethod();
+            if (method.equals("GET")) {
+                request.getRequestDispatcher("/WEB-INF/view/addcomment.jsp").forward(request, response);
+            } else if (method.equals("POST")) {
+            }
         } else if (uri.equals("/rankings")) {
             request.getRequestDispatcher("/WEB-INF/view/rankings.jsp").forward(request, response);
         } else if (uri.equals("/register")) {
@@ -75,21 +79,22 @@ public class HomeServlet extends HttpServlet {
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
                 String l = UserServiceImpl.getInstance().login(email, password);
-                if(l==null)
-                {
-                     PrintWriter out = response.getWriter();
+                if (l == null) {
+                    PrintWriter out = response.getWriter();
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('Login failed. Please try again.');");
                     out.println("window.location.href='/login';");
                     out.println("</script>");
-                }
-                else{
+                } else {
                     response.sendRedirect("/main");
                 }
             }
         } else if (uri.equals("/error404")) {
             request.getRequestDispatcher("/WEB-INF/view/error404.jsp").forward(request, response);
-        } 
+        }
+        else{
+             response.sendRedirect("/error404");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
