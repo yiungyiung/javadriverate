@@ -130,6 +130,7 @@ public class HomeServlet extends HttpServlet {
         } else if (uri.equals("/myvehicles")) {
             String method = (String) request.getMethod();
             if (method.equals("GET")) {
+                if(request.getSession().getAttribute("anom")!=null){
                 if (((String) request.getSession().getAttribute("anom")).equals("0")) {
                     System.out.println("invheicles");
                     String Email = (String) request.getSession().getAttribute("username");
@@ -139,7 +140,7 @@ public class HomeServlet extends HttpServlet {
                         request.getRequestDispatcher("/WEB-INF/view/myvehicles.jsp").forward(request, response);
                     }
                 }
-
+                }
             }
 
         } else if (uri.equals("/comments")) {
