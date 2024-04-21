@@ -119,6 +119,7 @@ if (username != null && anom.equals("0")) {
             <% System.out.println("ui");} else { %>
             <!-- Display register and login buttons -->
             <div class="d-flex align-items-center ps-3">
+                <button class="btn btn-outline-light me-3" onclick="location.href = '/anomuser'">Anonymous</button>
                 <button class="btn btn-outline-light me-3" onclick="location.href = '/register'">Register</button>
                 <button class="btn btn-outline-light me-3" onclick="location.href = '/login'">Login</button>
             </div>

@@ -428,4 +428,43 @@ public class UsersDAO {
 
         return bestVehicles;
     }
+
+    public Rating getLatestRating() {
+        Rating latestRating = null;
+
+        try (Connection connection = DBconnection.getConnection(); CallableStatement statement = connection.prepareCall("{CALL GetLatestRating(?, ?, ?, ?, ?, ?, ?, ?)}")) {
+
+            statement.registerOutParameter(1, Types.INTEGER); // p_LatestRatingID
+            statement.registerOutParameter(2, Types.TINYINT); // p_GoodRating
+            statement.registerOutParameter(3, Types.TINYINT); // p_BadRating
+            statement.registerOutParameter(4, Types.VARCHAR); // p_Comment
+            statement.registerOutParameter(5, Types.TIMESTAMP); // p_RatingTimestamp
+            statement.registerOutParameter(6, Types.DECIMAL); // p_Latitude
+            statement.registerOutParameter(7, Types.DECIMAL); // p_Longitude
+            statement.registerOutParameter(8, Types.VARCHAR); // p_VehicleNumber
+
+            statement.execute();
+
+            int ratingId = statement.getInt(1);
+            boolean goodRating = statement.getBoolean(2);
+            boolean badRating = statement.getBoolean(3);
+            String comment = statement.getString(4);
+            Timestamp ratingTimestamp = statement.getTimestamp(5);
+            double latitude = statement.getDouble(6);
+            double longitude = statement.getDouble(7);
+            String vehicleNumber = statement.getString(8);
+
+            // Set driverId and picture to default values (0 and null)
+            int driverId = 0;
+            byte[] picture = null;
+
+            latestRating = new Rating(ratingId, goodRating, badRating, picture, comment, driverId, vehicleNumber, ratingTimestamp, latitude, longitude);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return latestRating;
+    }
+
 }

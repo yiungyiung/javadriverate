@@ -32,4 +32,5 @@ public interface UsersService {
     public List<Rating> getAllRatings();
     public Map<String, Integer> getBestVehiclesWithGoodVotes();
     public Map<String, Integer> getWorstVehiclesWithNegativeVotes();
+    public Rating getLatestRating();
 }

@@ -100,4 +100,10 @@ public class UserServiceImpl implements UsersService {
         Map<String, Integer> st = UsersDAO.getInstance().getWorstVehiclesWithNegativeVotes();
         return st;
     }
+
+    @Override
+    public Rating getLatestRating() {
+        Rating st = UsersDAO.getInstance().getLatestRating();
+        return st;
+    }
 }

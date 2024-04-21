@@ -44,6 +44,9 @@ public class HomeServlet extends HttpServlet {
         String uri = request.getRequestURI();
 
         if (uri.equals("/")) {
+            Rating rt = UserServiceImpl.getInstance().getLatestRating();
+            System.out.println(rt.getVehicleNumber());
+            request.getSession().setAttribute("ratingindex",rt);
             request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
             System.out.println(request.getParameter("state"));
         } else if (uri.equals("/addcomment")) {

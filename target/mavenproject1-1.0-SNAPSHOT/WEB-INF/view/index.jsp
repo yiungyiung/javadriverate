@@ -28,6 +28,28 @@
             .container{
                 padding :20px;
             }
+            .latest-rating-card {
+                background-color: #f8f9fa;
+                border-radius: 10px;
+                padding: 10px;
+                margin-top: 20px;
+                width: 350px;
+            }
+            .rating-details {
+                margin-bottom: 10px;
+                color: black; /* Set the text color to black */
+
+            }
+            .detail-label {
+                color: #007bff; /* Blue color for labels */
+                font-weight: bold; /* Make labels bold */
+            }
+
+            .detail-value {
+                color: #000; /* Black color for values */
+                font-style: italic; /* Make values italic */
+                margin-left: 10px; /* Add some space between labels and values */
+            }
         </style>
     </head>
     <body>
@@ -40,6 +62,23 @@
                         <p class="lead">Elevating road safety through community-driven driver ratings</p>
                         <hr class="my-4">
                         <p>Navigating India's diverse and dynamic roadways presents a myriad of challenges, where ensuring safe and responsible driving practices is paramount—introducing DriveRate, a groundbreaking driver rating platform designed to harness the collective observations of bystanders and passengers alike.</p>
+                        <hr class="my-4">
+                        <h3>How to Use DriveRate</h3>
+                        <p>DriveRate allows users to submit ratings and comments about vehicles based on their observations. You can contribute anonymously or register to access additional features, such as adding and viewing vehicles and viewing complete ratings. To get started, simply navigate to the relevant sections of the platform and follow the prompts.</p>
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-md-8">
+                                <div class="latest-rating-card ">
+                                    <h2 style="color: black;">Latest Rating</h2>
+                                    <div class="rating-details">
+                                        <span style="color: black;">Vehicle Number: ${ratingindex.getVehicleNumber()}</span><br>
+                                        <span style="color: black;">Rating Timestamp: ${ratingindex.getRatingTimestamp()}</span><br>
+                                        <span style="color: black;">Latitude: ${ratingindex.getLatitude()}</span><br>
+                                        <span style="color: black;">Longitude: ${ratingindex.getLongitude()}</span><br>
+                                        <span style="color: black;">Comment: ${ratingindex.getComment()}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -48,19 +87,13 @@
                         <p class="lead">The need for a collaborative approach to promoting road safety</p>
                         <hr class="my-4">
                         <p>India's roadways are bustling with activity, but this vibrant energy often comes with its own set of challenges. From reckless driving to lack of awareness about traffic rules, there's a pressing need to address these issues collectively. DriveRate aims to fill this gap by empowering individuals to contribute to the improvement of road safety through shared observations and ratings.</p>
+                        <hr class="my-4">
+                        <h3>SQL and Java Maven Integration</h3>
+                        <p>DriveRate leverages the power of SQL databases and Java Maven to manage and process vast amounts of data efficiently. With robust database management and seamless Java integration, DriveRate offers a reliable and scalable solution for road safety management.</p>
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
-                <div class="col-md-6">
-                    <h2>Select User Type</h2>
-                    <a class="btn btn-primary btn-lg" href="/register" role="button">Registered User</a>
-                </div>
-                <div class="col-md-6">
-                    <h2>&nbsp;</h2>
-                    <a class="btn btn-primary btn-lg" href="/anomuser" role="button">Anonymous User</a>
-                </div>
-            </div>
-        </div>
+            <%-- Latest Rating Card --%>
+
     </body>
 </html>
