@@ -1,6 +1,8 @@
+com\mycompany\mavenproject1\model\Rating.class
 com\mycompany\mavenproject1\UserService\UsersService.class
 com\mycompany\mavenproject1\config\DBconnection.class
 com\mycompany\mavenproject1\model\UserModel.class
+com\mycompany\mavenproject1\model\Vehicle.class
 com\mycompany\mavenproject1\UserService\UserServiceImpl.class
 com\mycompany\mavenproject1\JakartaRestConfiguration.class
 com\mycompany\mavenproject1\HomeServlet.class

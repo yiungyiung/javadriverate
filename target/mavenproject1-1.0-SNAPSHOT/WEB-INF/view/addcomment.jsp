@@ -10,28 +10,15 @@
         <title>DriveRate</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script>
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition);
-                } else {
-                    alert("Geolocation is not supported by this browser.");
-                }
-            }
-
-            function showPosition(position) {
-                document.getElementById("latitude").value = position.coords.latitude;
-                document.getElementById("longitude").value = position.coords.longitude;
-            }
-        </script>
     </head>
     <body class="bg-secondary text-white">
         <%@include file="navbar.jsp" %>
         <div class="container mt-4">
-            <form enctype="multipart/form-data" onsubmit="getLocation()">
+            <form action="/addcomment" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="number" class="form-label">Vehicle Number</label>
-                    <input type="text" class="form-control" name="number" placeholder="Enter Vehicle Number" required>
+                    <input type="text" class="form-control" name="number" value="${param.vehicleNumber}" placeholder="Enter Vehicle Number" required>
+
                 </div>
                 <div class="mb-3">
                     <label for="state" class="form-label">State</label>

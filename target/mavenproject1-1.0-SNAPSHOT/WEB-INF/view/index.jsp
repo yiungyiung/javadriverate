@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : Apr 3, 2024, 10:27:27 PM
-    Author     : yash
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib  prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
@@ -11,19 +5,62 @@
     <head>
         <title>DriveRate</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> <script src="closeListener.js"></script>
+        <style>
+            body {
+                background-color: #343a40; /* Updated background color */
+                color: #fff;
+            }
+            .jumbotron-left {
+                background-color: #343a40; /* Same as body background */
+                color: #fff;
+                height: 100%;
+            }
+            .jumbotron-right {
+                background-color: #343a40;
+                color: #fff;
+                height: 100%;
+            }
+            .btn-primary, .btn-secondary {
+                margin-top: 20px;
+                width: 150px;
+            }
+            .container{
+                padding :20px;
+            }
+        </style>
     </head>
-    <body class="bg-secondary text-white">
+    <body>
         <%@include file="navbar.jsp" %>
-        <h1>why do isda rock</h1>
-        <form method="get" action="/main" > 
-            <input type="text" name="userName" placeholder="name">
-                <button type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                </svg>
-                </button>
-        </form>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="jumbotron jumbotron-left">
+                        <h1 class="display-4">Welcome to DriveRate</h1>
+                        <p class="lead">Elevating road safety through community-driven driver ratings</p>
+                        <hr class="my-4">
+                        <p>Navigating India's diverse and dynamic roadways presents a myriad of challenges, where ensuring safe and responsible driving practices is paramount—introducing DriveRate, a groundbreaking driver rating platform designed to harness the collective observations of bystanders and passengers alike.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="jumbotron jumbotron-right">
+                        <h1 class="display-4">Problem Statement</h1>
+                        <p class="lead">The need for a collaborative approach to promoting road safety</p>
+                        <hr class="my-4">
+                        <p>India's roadways are bustling with activity, but this vibrant energy often comes with its own set of challenges. From reckless driving to lack of awareness about traffic rules, there's a pressing need to address these issues collectively. DriveRate aims to fill this gap by empowering individuals to contribute to the improvement of road safety through shared observations and ratings.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <h2>Select User Type</h2>
+                    <a class="btn btn-primary btn-lg" href="/register" role="button">Registered User</a>
+                </div>
+                <div class="col-md-6">
+                    <h2>&nbsp;</h2>
+                    <a class="btn btn-primary btn-lg" href="/anomuser" role="button">Anonymous User</a>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
-F

@@ -45,6 +45,7 @@
         <div class="cont">
             <%@include file="navbar.jsp" %> 
             <div class="container">
+                <img src="images/error.png" width="940" height="788" alt="error"/>
                 <h1>Oops! Page Not Found</h1>
                 <p>We're sorry, but the page you are looking for seems to be missing. It may have been moved, deleted, or never existed.</p>
                 <p>Here are a few things you can try:</p>

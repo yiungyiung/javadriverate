@@ -13,40 +13,63 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <style>
-            /* Adjust margins and paddings as needed */
-            .left-side, .right-side {
-                padding: 20px;
+            .ranking-item {
+                margin-bottom: 10px;
+                padding: 10px;
+                border-radius: 5px;
+                background-color: #f8f9fa;
+            }
+            .good-vote-icon {
+                color: #28a745;
+            }
+            .bad-vote-icon {
+                color: #dc3545;
             }
         </style>
     </head>
     <body class="bg-secondary text-white">
         <%@include file="navbar.jsp" %>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <!-- Left Side - Best Ranking/Drivers -->
-                <div class="col-md-6 left-side">
+                <div class="col-md-6">
                     <h2>Best Ranking/Drivers</h2>
-                    <ul class="list-group">
-                        <!-- List of best ranking/drivers -->
-                        <li class="list-group-item">Driver 1</li>
-                        <li class="list-group-item">Driver 2</li>
-                        <li class="list-group-item">Driver 3</li>
-                        <!-- Add more items as needed -->
-                    </ul>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Vehicle Number</th>
+                                <th>Number of Votes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="entry" items="${bestRankings}">
+                                <tr class="ranking-item">
+                                    <td><a href="/addcomment?vehicleNumber=${entry.key}">${entry.key}</a></td>
+                                    <td>${entry.value}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
-                <!-- Right Side - Worst Ranking/Drivers -->
-                <div class="col-md-6 right-side">
+                <div class="col-md-6">
                     <h2>Worst Ranking/Drivers</h2>
-                    <ul class="list-group bg-transparent">
-                        <!-- List of worst ranking/drivers -->
-                        <li class="list-group-item">Driver A</li>
-                        <li class="list-group-item">Driver B</li>
-                        <li class="list-group-item">Driver C</li>
-                        <!-- Add more items as needed -->
-                    </ul>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Vehicle Number</th>
+                                <th>Number of Votes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="entry" items="${worstRankings}">
+                                <tr class="ranking-item">
+                                    <td><a href="/addcomment?vehicleNumber=${entry.key}">${entry.key}</a></td>
+                                    <td>${entry.value}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-
     </body>
 </html>

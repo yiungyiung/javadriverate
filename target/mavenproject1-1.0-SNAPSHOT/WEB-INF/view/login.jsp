@@ -19,7 +19,9 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title mb-4">Login</h5>
+                            <h5 class="card-title mb-4">Login</h5>                   
+                            <p class="text-left">Don't have an account? <a href="/register">Register here</a>.</p>
+
                             <form action="/login" method="POST">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email address</label>
@@ -36,12 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-3">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <p class="text-center">Don't have an account? <a href="/register">Register here</a>.</p>
-                </div>
-            </div>
-        </div>
+ 
+
     </body>
 </html>

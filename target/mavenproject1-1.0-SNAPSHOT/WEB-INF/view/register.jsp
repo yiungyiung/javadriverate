@@ -19,6 +19,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title mb-4">Register</h5>
+                            <p class="text-left">Already Registered! <a href="/login">Login here</a>.</p>
                             <form action="/register" method="post" onsubmit="return validateForm()">
                                 <div class="mb-3">
                                     <label for="username" class="form-label">Username</label>
@@ -55,13 +56,6 @@
                             </form>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="container mt-3">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <p class="text-center">Already Registered! <a href="/login">Login here</a>.</p>
                 </div>
             </div>
         </div>
